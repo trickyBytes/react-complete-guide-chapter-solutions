@@ -5,24 +5,12 @@ import "./App.css";
 class App extends Component {
   state = {
     persons: [
-      { name: "Max", age: 28 },
-      { name: "Manu", age: 29 },
-      { name: "Stephanie", age: 26 }
+      { id: 'asd', name: "Max", age: 28 },
+      { id: 'asdasdas', name: "Manu", age: 29 },
+      { id: 'weewrewr', name: "Stephanie", age: 26 }
     ],
     otherState: "Some other Value",
     showPersons: false
-  };
-
-  switchNameHandler = newName => {
-    // console.log("Was clicked!");
-    //Don't do this this.state.persons[0].name = 'Maximillian'
-    this.setState({
-      persons: [
-        { name: newName, age: 28 },
-        { name: "Manu", age: 29 },
-        { name: "Stephanie", age: 27 }
-      ]
-    });
   };
 
   nameChangedHandler = event => {
@@ -34,6 +22,12 @@ class App extends Component {
         { name: "Stephanie", age: 26 }
       ]
     });
+  };
+
+  deletePersonHander = (personIndex) => {
+    const persons = [...this.state.persons]; //New array with objects from old - makes state immutable here.
+    persons.splice(personIndex, 1);
+    this.setState({persons: persons});
   };
 
   togglePersonsHandler = () => {
@@ -55,8 +49,15 @@ class App extends Component {
     if (this.state.showPersons === true) {
       persons = (
         <div>
-          {this.state.persons.map(person => {
-            return <Person name={person.name} age={person.age} />;
+          {this.state.persons.map((person, index) => {
+            return (
+              <Person
+                click={() => this.deletePersonHander(index)}
+                name={person.name}
+                age={person.age}
+                key={person.id}
+              />
+            );
           })}
         </div>
       );
