@@ -7,9 +7,7 @@ const Cockpit = props => {
     setTimeout(() => {
       alert('saved data to cloud');
     }, 1000);
-  }, 
-  //Add argument to define when this should executute
-  [props.persons]);
+  }, []);//Empty array means only run once.
 
   const style = {
     backgroundColor: "white",
