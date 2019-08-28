@@ -1,13 +1,24 @@
 import React, { useEffect } from "react";
 
 const Cockpit = props => {
-  //Combines componentDidMount and componentDidUpdate
+  //Combines componentDidMount and componentDidUpdate for func element
   useEffect(() => {
     console.log("[Cockpit.js] useEffect");
     setTimeout(() => {
       alert('saved data to cloud');
     }, 1000);
+    return () => {
+      console.log('[Cockpit.js] cleanup work in useEffect')
+    }
   }, []);//Empty array means only run once.
+
+  // Run on every lifecycle event
+  useEffect(() => {
+    console.log("[Cockpit.js] 2nd useEffect");
+    return () => {
+      console.log('[Cockpit.js] cleanup work in 2nd useEffect')
+    }
+  });
 
   const style = {
     backgroundColor: "white",

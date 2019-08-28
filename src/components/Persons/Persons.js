@@ -30,6 +30,10 @@ class Persons extends Component {
     console.log(snaphsot);
   }
 
+  componentWillUnmount(){
+    console.log('[Persons.js] componentWillUnmount');
+  }
+
   render() {
     return this.props.persons.map((person, index) => {
       return (
