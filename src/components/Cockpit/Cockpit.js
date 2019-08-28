@@ -1,6 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 
-const cockpit = props => {
+const Cockpit = props => {
+  //Combines componentDidMount and componentDidUpdate
+  useEffect(() => {
+    console.log("[Cockpit.js] useEffect");
+    setTimeout(() => {
+      alert('saved data to cloud');
+    }, 1000);
+  }, 
+  //Add argument to define when this should executute
+  [props.persons]);
+
   const style = {
     backgroundColor: "white",
     font: "inherit",
@@ -21,4 +31,4 @@ const cockpit = props => {
   );
 };
 
-export default cockpit;
+export default Cockpit;
